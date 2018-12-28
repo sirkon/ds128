@@ -22,7 +22,7 @@ func Mul(lo1, hi1, lo2, hi2 uint64) (lo uint64, hi uint64) {
 
 // Negate negates 128bit integer
 func Negate(lo, hi uint64) (uint64, uint64) {
-	return Add(^lo, ^hi, 0, 1)
+	return Add(^lo, ^hi, 1, 0)
 }
 
 // Cmp checks if first number (lo1, hi1) is less than the second (lo2, hi2)
