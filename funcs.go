@@ -19,3 +19,8 @@ func Mul(lo1, hi1, lo2, hi2 uint64) (lo uint64, hi uint64) {
 	loHi, _ := Mul64(lo2, hi2, hi1)
 	return loLo, loHi + hiLo
 }
+
+// Negate negates 128bit integer
+func Negate(lo, hi uint64) (uint64, uint64) {
+	return Add(^lo, ^hi, 0, 1)
+}
