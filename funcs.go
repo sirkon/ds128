@@ -1,5 +1,9 @@
 package ds128
 
+import (
+	"math/bits"
+)
+
 // Add emulates 128bit addition
 func Add(lo1, hi1, lo2, hi2 uint64) (lo uint64, hi uint64) {
 	lo = lo1 + lo2
@@ -11,7 +15,11 @@ func Add(lo1, hi1, lo2, hi2 uint64) (lo uint64, hi uint64) {
 }
 
 // Mul64 emulates multiplication of 128 bit to 64 bit unsigned integer
-func Mul64(lo, hi, v uint64) (resLo uint64, resHi uint64)
+func Mul64(lo, hi, v uint64) (resLo uint64, resHi uint64) {
+	addHi, resLo := bits.Mul64(lo, v)
+	_, resHi = bits.Mul64(hi, v)
+	return resLo, resHi + addHi
+}
 
 // Mul emulates multiplication of two 128-bit unsigned integers in \mathbb{Z}_{2^128}
 func Mul(lo1, hi1, lo2, hi2 uint64) (lo uint64, hi uint64) {
